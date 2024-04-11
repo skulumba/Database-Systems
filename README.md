@@ -52,6 +52,7 @@ GROUP BY
 -  Add a Keyword to the Database
 
 This feature allows the user to add a new keyword to the database. The user can enter the ID and name of the keyword in the input fields and click the "Add" button to add the keyword to the database. The keyword is then displayed in a table.
+![image](https://github.com/skulumba/Database-Systems/assets/75015106/d1539b90-db79-4896-a320-1854340422da)
 
 | ROUTINE_NAME            | ROUTINE_TYPE |
 |-------------------------|--------------|
@@ -76,12 +77,32 @@ CREATE TABLE keyword_log (
     deleted_at TIMESTAMP
 );
 ```
+
+![image](https://github.com/skulumba/Database-Systems/assets/75015106/a9d46e72-6724-41f0-9eb7-5220f937439a)
+
 | Field      | Type         | Null | Key | Default | Extra |
 |------------|--------------|------|-----|---------|-------|
 | id         | int          | NO   |     | NULL    |       |
 | name       | varchar(512) | YES  |     | NULL    |       |
 | deleted_at | timestamp    | YES  |     | NULL    |       |
 
+![image](https://github.com/skulumba/Database-Systems/assets/75015106/c405a9be-81ec-475c-94be-d67f952d3740)
+
+| TRIGGER_NAME          | EVENT_OBJECT_TABLE | ACTION_TIMING | ACTION_STATEMENT                                                                                   |
+|-----------------------|--------------------|---------------|----------------------------------------------------------------------------------------------------|
+| keyword_delete_trigger| keyword            | AFTER         | BEGIN
+    INSERT INTO keyword_log (id, name, deleted_at)
+    VALUES (OLD.id, OLD.name, NOW());
+END |
+
+
+| TRIGGER_NAME          | EVENT_OBJECT_TABLE | ACTION_TIMING | ACTION_STATEMENT                                                                                   |
+|-----------------------|--------------------|---------------|----------------------------------------------------------------------------------------------------|
+| keyword_delete_trigger| keyword            | AFTER         | BEGIN INSERT INTO keyword_log (id, name, deleted_at) VALUES (OLD.id, OLD.name, NOW()); END          |
+
+| TRIGGER_NAME          | EVENT_OBJECT_TABLE | ACTION_TIMING | ACTION_STATEMENT                                                                                   |
+|-----------------------|--------------------|---------------|----------------------------------------------------------------------------------------------------|
+| keyword_delete_trigger| keyword            | AFTER         | BEGIN<br>INSERT INTO keyword_log (id, name, deleted_at)<br>VALUES (OLD.id, OLD.name, NOW());<br>END |
 
 
 - View Faculty Members with the Highest Number of Publications

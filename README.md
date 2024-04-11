@@ -91,3 +91,6 @@ This feature allows the user to find the top faculty members with the highest nu
 - Find top Faculty Members Associated with a Keyword
 
 This feature allows the user to find the faculty members associated with a specific keyword. The user can enter a keyword in the input field and click the "Find" button to see the search results. The search results are displayed in a pie chart.
+
+[Watch the Demo Video](https://mediaspace.illinois.edu/media/t/1_zxaswef3)
+

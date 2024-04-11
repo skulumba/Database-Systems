@@ -80,25 +80,6 @@ CREATE TABLE keyword_log (
 
 ![image](https://github.com/skulumba/Database-Systems/assets/75015106/a9d46e72-6724-41f0-9eb7-5220f937439a)
 
-| Field      | Type         | Null | Key | Default | Extra |
-|------------|--------------|------|-----|---------|-------|
-| id         | int          | NO   |     | NULL    |       |
-| name       | varchar(512) | YES  |     | NULL    |       |
-| deleted_at | timestamp    | YES  |     | NULL    |       |
-
-![image](https://github.com/skulumba/Database-Systems/assets/75015106/c405a9be-81ec-475c-94be-d67f952d3740)
-
-| TRIGGER_NAME          | EVENT_OBJECT_TABLE | ACTION_TIMING | ACTION_STATEMENT                                                                                   |
-|-----------------------|--------------------|---------------|----------------------------------------------------------------------------------------------------|
-| keyword_delete_trigger| keyword            | AFTER         | BEGIN
-    INSERT INTO keyword_log (id, name, deleted_at)
-    VALUES (OLD.id, OLD.name, NOW());
-END |
-
-
-| TRIGGER_NAME          | EVENT_OBJECT_TABLE | ACTION_TIMING | ACTION_STATEMENT                                                                                   |
-|-----------------------|--------------------|---------------|----------------------------------------------------------------------------------------------------|
-| keyword_delete_trigger| keyword            | AFTER         | BEGIN INSERT INTO keyword_log (id, name, deleted_at) VALUES (OLD.id, OLD.name, NOW()); END          |
 
 | TRIGGER_NAME          | EVENT_OBJECT_TABLE | ACTION_TIMING | ACTION_STATEMENT                                                                                   |
 |-----------------------|--------------------|---------------|----------------------------------------------------------------------------------------------------|
